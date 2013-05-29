@@ -4,9 +4,10 @@ import os
 import sys
 import subprocess
 import shlex
-import traceback
 
 PATH_TO_HERE = os.path.abspath(os.path.dirname(__file__))
+print "PATH TO HERE:", PATH_TO_HERE
+
 sys.path.append(os.path.join(PATH_TO_HERE, '..'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'syte.settings'
 
@@ -32,14 +33,14 @@ def compress_styles():
     less_path = os.path.join(PATH_TO_HERE, 'static/less/styles.less')
     css_path = os.path.join(PATH_TO_HERE, 'static/css/')
 
-    try:
-        subprocess.check_call(shlex.split('lessc {0} {1}styles-{2}.min.css -yui-compress'
-            .format(less_path, css_path, settings.COMPRESS_REVISION_NUMBER)))
-        print 'CSS Styles Generated: styles-{0}.min.css'.format(settings.COMPRESS_REVISION_NUMBER)
-    except Exception:
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-        stack_trace = traceback.format_exception(exc_type, exc_value, exc_traceback)
-        print stack_trace
+    print ""
+    print "less_path:", less_path
+    print " css_path:", css_path
+    print ""
+
+    subprocess.check_call(shlex.split('../node_modules/less/bin/lessc {0} {1}styles-{2}.min.css -yui-compress'
+                                      .format(less_path, css_path, settings.COMPRESS_REVISION_NUMBER)))
+    print 'CSS Styles Generated: styles-{0}.min.css'.format(settings.COMPRESS_REVISION_NUMBER)
 
 
 def compress_js():
@@ -106,17 +107,12 @@ def compress_js():
     with open(os.path.join(PATH_TO_HERE, 'static/js/combined.js'), 'w') as f:
         f.write(combined)
 
-    try:
-        subprocess.check_call(shlex.split('uglifyjs -o {0}scripts-{1}.min.js {2}'.format(
-            os.path.join(PATH_TO_HERE, 'static/js/min/'),
-            settings.COMPRESS_REVISION_NUMBER,
-            os.path.join(PATH_TO_HERE, 'static/js/combined.js'))))
-        os.remove(os.path.join(PATH_TO_HERE, 'static/js/combined.js'))
-        print 'JavaScript Combined and Minified: scripts-{0}.min.js'.format(settings.COMPRESS_REVISION_NUMBER)
-    except Exception:
-        exc_type, exc_value, exc_traceback = sys.exc_info()
-        stack_trace = traceback.format_exception(exc_type, exc_value, exc_traceback)
-        print stack_trace
+    subprocess.check_call(shlex.split('../node_modules/uglify-js/bin/uglifyjs -o {0}scripts-{1}.min.js {2}'.format(
+        os.path.join(PATH_TO_HERE, 'static/js/min/'),
+        settings.COMPRESS_REVISION_NUMBER,
+        os.path.join(PATH_TO_HERE, 'static/js/combined.js'))))
+    os.remove(os.path.join(PATH_TO_HERE, 'static/js/combined.js'))
+    print 'JavaScript Combined and Minified: scripts-{0}.min.js'.format(settings.COMPRESS_REVISION_NUMBER)
 
 
 if __name__ == "__main__":
