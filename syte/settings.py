@@ -63,6 +63,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'gunicorn',
+    'demos',
 )
 
 try:

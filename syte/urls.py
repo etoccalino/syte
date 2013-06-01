@@ -92,6 +92,13 @@ if settings.STACKOVERFLOW_INTEGRATION_ENABLED:
         url(r'^stackoverflow/(?P<userid>[\-\w]+)/?$', 'syte.views.stackoverflow.stackoverflow'),
     )
 
+#Demos Integration
+if settings.DEMOS_INTEGRATION_ENABLED:
+    urlpatterns += patterns('',
+        url(r'^demos/?$', 'demos.views.demos'),
+        url(r'^demo/(?P<slug>[\-\w]+)/?$', 'demo.views.demo'),
+    )
+
 #Sitemap
 if settings.SITEMAP_ENABLED:
     urlpatterns += patterns('',
