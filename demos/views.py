@@ -11,23 +11,24 @@ def demos(request):
     demos = Demo.objects.all()
     for demo in demos:
         results.append(demo.to_dict())
-    return HttpResponse(content=json.dumps(results),
+    return HttpResponse(content=json.dumps({'demos': results}),
                         content_type="application/json")
 
 
 def demo(request, slug):
     "Dispatch to JSON or HTML response"
-    if not Demo.objects.get(slug=slug).exists():
+    if not Demo.objects.filter(slug=slug).exists():
         return HttpResponseNotFound()
 
-    ctype = request.META.get('CONTENT_TYPE', "text/html")
-    if ctype == "application/json" or ctype == "text/json":
+    accept = request.META.get('ACCEPT', "text/html")
+
+    if accept.startswith("application/json") or accept.startswith("text/json"):
         return demo_as_json(request, slug)
-    elif ctype == "text/html":
+    elif accept.startswith("text/html"):
         return demo_as_html(request, slug)
     else:
         # Return a "501 Not Implemented"
-        return HttpResponse(status_code=501)
+        return HttpResponse(status=501)
 
 
 def demo_as_json(request, slug):
