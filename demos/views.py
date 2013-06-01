@@ -40,5 +40,5 @@ def demo_as_json(request, slug):
 
 
 def demo_as_html(request, slug):
-    template = "templates/{0}.html".format(slug)
+    template = "demos/{0}.html".format(slug)
     return render_to_response(template)
