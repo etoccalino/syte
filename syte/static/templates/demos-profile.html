@@ -4,7 +4,12 @@
     <li>
     <a href="/demos/{{ slug }}" class="profile-repo-name">{{ name }}</a>
     <p class="profile-repo-text">
-      {{ description }}
+      {{#if article}}
+      Read the  <a href="{{ article }}">article</a>
+      {{/if}}
+      {{#if repo}}
+      Check out <a href="{{ repo }}">the code</a>
+      {{/if}}
     </p>
     </li>
     {{/each}}
