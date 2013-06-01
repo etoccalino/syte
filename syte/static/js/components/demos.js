@@ -14,9 +14,8 @@ function setupDemos(el) {
     ["json!/demos", "text!templates/demos-profile.html"],
     function(demos_data, demos_view) {
       if (demos_data.error || demos_data.length == 0) {
-        spinner.stop(); // DEBUG
-        adjustSelection('home');  // DEBUG
-        // window.location = href;
+        spinner.stop();
+        adjustSelection('home');
         return;
       }
 
