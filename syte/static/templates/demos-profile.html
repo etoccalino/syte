@@ -1,0 +1,12 @@
+<div class="profile demos modal fade" id="demos-profile">
+  <ul class="profile-repos">
+    {{#each demos}}
+    <li>
+    <a href="/demos/{{ slug }}" class="profile-repo-name">{{ name }}</a>
+    <p class="profile-repo-text">
+      {{ description }}
+    </p>
+    </li>
+    {{/each}}
+  </ul>
+</div>

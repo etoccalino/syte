@@ -11,7 +11,8 @@ var allComponents = [
   'foursquare',
   'tent',
   'steam',
-  'stackoverflow'
+  'stackoverflow',
+  'demos'
 ];
 
 currSelection = 'home';
@@ -68,6 +69,9 @@ function setupLinks() {
       }
       else if (this.id == 'flickr-link' && flickr_integration_enabled) {
           adjustSelection('flickr', setupFlickr.bind(this, url, this));
+      }
+      else if(this.id == 'demos-link' && demos_integration_enabled) {
+        adjustSelection('demos', setupDemos.bind(this, this));
       }
       else {
         window.location = this.href;

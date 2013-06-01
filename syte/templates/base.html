@@ -29,6 +29,7 @@
   <nav>
     <ul class="main-nav">
       <li><a href="/" id="home-link">Home</a></li>
+      <li><a href="/demos" id="demos-link">Demos!</a></li>
       <li><a href="http://github.com/etoccalino" id="github-link">Github</a></li>
       <!-- <li><a href="http://lastfm.com/user/etoccalino" id="lastfm-link">Last.fm</a></li> -->
       <li><a href="http://bitbucket.org/etoccalino" id="bitbucket-link">Bitbucket</a></li>
@@ -61,6 +62,7 @@ var twitter_integration_enabled = {% if TWITTER_INTEGRATION_ENABLED %}true{% els
     steam_integration_enabled = {% if STEAM_INTEGRATION_ENABLED %}true{% else %}false{% endif %};
     stackoverflow_integration_enabled = {% if STACKOVERFLOW_INTEGRATION_ENABLED %}true{% else %}false{% endif %};
     flickr_integration_enabled = {% if FLICKR_INTEGRATION_ENABLED %}true{% else %}false{% endif %};
+    demos_integration_enabled = {% if DEMOS_INTEGRATION_ENABLED %}true{% else %}false{% endif %};
 
 {% if DISQUS_INTEGRATION_ENABLED %}var disqus_shortname = '{{ DISQUS_SHORTNAME }}';{% endif %}
 {% if FLICKR_INTEGRATION_ENABLED %}var flickr_id = '{{ FLICKR_ID }}';{% endif %}
@@ -86,6 +88,7 @@ var twitter_integration_enabled = {% if TWITTER_INTEGRATION_ENABLED %}true{% els
 <script src="{{ MEDIA_URL }}js/components/base.js"></script>
 <script src="{{ MEDIA_URL }}js/components/mobile.js"></script>
 <script src="{{ MEDIA_URL }}js/components/blog-posts.js"></script>
+<script src="{{ MEDIA_URL }}js/components/demos.js"></script>
 <script src="{{ MEDIA_URL }}js/components/links.js"></script>
 
 {% if TWITTER_INTEGRATION_ENABLED %}<script src="{{ MEDIA_URL }}js/components/twitter.js"></script>{% endif %}
