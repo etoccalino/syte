@@ -96,7 +96,7 @@ if settings.STACKOVERFLOW_INTEGRATION_ENABLED:
 if settings.DEMOS_INTEGRATION_ENABLED:
     urlpatterns += patterns('',
         url(r'^demos/?$', 'demos.views.demos'),
-        url(r'^demo/(?P<slug>[\-\w]+)/?$', 'demo.views.demo'),
+        url(r'^demos/(?P<slug>[\-\w]+)/?$', 'demos.views.demo'),
     )
 
 #Sitemap
