@@ -6,8 +6,10 @@ import requests
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 
+@cache_page(settings.CACHING_POLICIES.get('aggresive'))
 def github(request, username):
     user_r = requests.get('{0}users/{1}?access_token={2}'.format(
         settings.GITHUB_API_URL,

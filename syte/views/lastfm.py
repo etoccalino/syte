@@ -4,8 +4,10 @@ import json
 import requests
 from django.http import HttpResponse
 from django.conf import settings
+from django.views.decorators.cache import cache_page
 
 
+@cache_page(settings.CACHING_POLICIES.get('soft'))
 def lastfm(request, username):
     url = '{0}?method=user.getrecenttracks&user={1}&api_key={2}&format=json'.format(
         settings.LASTFM_API_URL, username, settings.LASTFM_API_KEY)

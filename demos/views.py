@@ -1,11 +1,12 @@
 from django.http import HttpResponse, HttpResponseNotFound
 from django.views.decorators.cache import cache_page
 from django.shortcuts import render
+from django.conf import settings
 from models import Demo
 import json
 
 
-@cache_page(60 * 30)
+@cache_page(settings.CACHING_POLICIES.get('persistent'))
 def demos(request):
     results = []
     demos = Demo.objects.all()
@@ -15,7 +16,7 @@ def demos(request):
                         content_type="application/json")
 
 
-@cache_page(60 * 30)
+@cache_page(settings.CACHING_POLICIES.get('persistent'))
 def demo(request, slug):
     "Dispatch to JSON or HTML response"
     if not Demo.objects.filter(slug=slug).exists():
