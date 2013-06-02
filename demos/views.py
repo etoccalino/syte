@@ -1,11 +1,11 @@
-"Views in this module a BIG candidates for aggresive catching."
-
 from django.http import HttpResponse, HttpResponseNotFound
+from django.views.decorators.cache import cache_page
 from django.shortcuts import render
 from models import Demo
 import json
 
 
+@cache_page(60 * 30)
 def demos(request):
     results = []
     demos = Demo.objects.all()
@@ -15,6 +15,7 @@ def demos(request):
                         content_type="application/json")
 
 
+@cache_page(60 * 30)
 def demo(request, slug):
     "Dispatch to JSON or HTML response"
     if not Demo.objects.filter(slug=slug).exists():
