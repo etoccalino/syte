@@ -6,8 +6,6 @@ import subprocess
 import shlex
 
 PATH_TO_HERE = os.path.abspath(os.path.dirname(__file__))
-print "PATH TO HERE:", PATH_TO_HERE
-
 sys.path.append(os.path.join(PATH_TO_HERE, '..'))
 os.environ['DJANGO_SETTINGS_MODULE'] = 'syte.settings'
 
@@ -32,11 +30,6 @@ def compress_statics():
 def compress_styles():
     less_path = os.path.join(PATH_TO_HERE, 'static/less/styles.less')
     css_path = os.path.join(PATH_TO_HERE, 'static/css/')
-
-    print ""
-    print "less_path:", less_path
-    print " css_path:", css_path
-    print ""
 
     subprocess.check_call(shlex.split('../node_modules/less/bin/lessc {0} {1}styles-{2}.min.css -yui-compress'
                                       .format(less_path, css_path, settings.COMPRESS_REVISION_NUMBER)))
@@ -98,6 +91,9 @@ def compress_js():
 
     if settings.FLICKR_INTEGRATION_ENABLED:
         js_files.append('components/flickr.js')
+
+    if settings.DEMOS_INTEGRATION_ENABLED:
+        js_files.append('components/demos.js')
 
     combined = ''
     for js in js_files:
