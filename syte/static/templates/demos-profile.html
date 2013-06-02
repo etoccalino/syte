@@ -2,13 +2,16 @@
   <ul class="profile-repos">
     {{#each demos}}
     <li>
-    <a href="/demos/{{ slug }}" class="profile-repo-name">{{ name }}</a>
+    <a href="{{ self }}" class="profile-repo-name">{{ name }}</a>
+    {{#if description }}
+    <p>{{ description }}</p>
+    {{/if}}
     <p class="profile-repo-text">
       {{#if article}}
-      Read the  <a href="{{ article }}">article</a>
+      Read the  <a href="{{ article }}">article</a>.
       {{/if}}
       {{#if repo}}
-      Check out <a href="{{ repo }}">the code</a>
+      Check out <a href="{{ repo }}">the code</a>.
       {{/if}}
     </p>
     </li>
