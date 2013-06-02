@@ -131,6 +131,10 @@ FLICKR_INTEGRATION_ENABLED = True
 FLICKR_ID = '[ENTER YOUR FLICKR ID (NOT USERNAME) HERE]' # You do your username->ID lookup here: http://idgettr.com/
 
 
+#Demo Integration
+DEMOS_INTEGRATION_ENABLED = True
+
+
 SITEMAP_ENABLED = False
 
 if DEPLOYMENT_MODE == 'dev':
