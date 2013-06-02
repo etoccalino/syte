@@ -1,7 +1,7 @@
 "Views in this module a BIG candidates for aggresive catching."
 
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from models import Demo
 import json
 
@@ -41,4 +41,4 @@ def demo_as_json(request, slug):
 
 def demo_as_html(request, slug):
     template = "demos/{0}.html".format(slug)
-    return render_to_response(template)
+    return render(request, template, {})
