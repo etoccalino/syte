@@ -8,11 +8,11 @@ function renderBlogPosts(posts) {
   if (posts.length === 0) {
       reachedEnd = true;
   }
-  
-  //Update this every time there are changes to the required 
+
+  //Update this every time there are changes to the required
   //templates since it's cached every time
   require.config({
-    urlArgs: "bust=v1" 
+    urlArgs: "bust=v1"
   })
 
   require(["text!templates/blog-post-text.html",
@@ -105,14 +105,6 @@ function fetchWordpressBlogPosts(offset, tag) {
           newTags.push(tag);
         }
         p.tags = newTags;
-        // TODO: figure out how to preserve timezone info and make it consistent with
-        // python's datetime.strptime
-        if (p.date.lastIndexOf('+') > 0) {
-          p.date = p.date.substring(0, p.date.indexOf('+'));
-        }
-        else {
-          p.date = p.date.substring(0, p.date.indexOf('-'));
-        }
     });
     renderBlogPosts(data.posts);
   });
